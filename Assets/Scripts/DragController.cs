@@ -4,31 +4,49 @@ using UnityEngine;
 
 public class DragController : MonoBehaviour
 {
-    private Vector3 mOffset;
-    private float mZCoord;
+	private Vector3 mOffset;
+	private float mZCoord;
+	private Vector3 gridSize = new Vector3(1,1,1); // Set x, y and z grid for all shapes
 
-    void OnMouseDown()
-    {
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+	public void Update()
+	{
+		// Rounding that position to the nearest grid spot
+		var position = new Vector3(
+			   Mathf.RoundToInt(this.transform.position.x / this.gridSize.x) * this.gridSize.x,
+			   Mathf.RoundToInt(this.transform.position.y / this.gridSize.y) * this.gridSize.y,
+			   Mathf.RoundToInt(this.transform.position.z / this.gridSize.z) * this.gridSize.z
+		   );
 
-        // Store offset = gameobject world pos - mouse world pos
-        mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
-    }
+		// Applying the rounding to the nearest grid spot
+		this.transform.position = position;
 
-    private Vector3 GetMouseAsWorldPoint()
-    {
-        // Pixel coordinates of mouse (x,y)
-        Vector3 mousePoint = Input.mousePosition;
+		//get with transform.eulerAngles.z
+		transform.eulerAngles = new Vector3(0, 0, 0);
+	}
 
-        // z coordinate of game object on screen
-        mousePoint.z = mZCoord;
+	void OnMouseDown()
+	{
+		mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
-        // Convert it to world points
-        return Camera.main.ScreenToWorldPoint(mousePoint);
-    }
+		// Store offset = gameobject world pos - mouse world pos
+		mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
+	}
 
-    void OnMouseDrag()
-    {
-        transform.position = GetMouseAsWorldPoint() + mOffset;
-    }
+	private Vector3 GetMouseAsWorldPoint()
+	{
+		// Pixel coordinates of mouse (x,y)
+		Vector3 mousePoint = Input.mousePosition;
+
+		// z coordinate of game object on screen
+		mousePoint.z = mZCoord;
+
+		// Convert it to world points
+		return Camera.main.ScreenToWorldPoint(mousePoint);
+	}
+
+	void OnMouseDrag()
+	{
+		// Moving shape with the cursor
+		transform.position = GetMouseAsWorldPoint() + mOffset;
+	}
 }

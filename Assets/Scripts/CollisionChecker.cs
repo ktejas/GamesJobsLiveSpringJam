@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CollisionChecker : MonoBehaviour
 {
-
     private void OnCollisionEnter(Collision otherCollision)
     {
         if(otherCollision.gameObject.tag == "Block")
