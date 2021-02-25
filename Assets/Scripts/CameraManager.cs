@@ -17,11 +17,11 @@ public class CameraManager : MonoBehaviour
         // Rotating camera around a point (first parameter), around the Y axis (second parameter) at 20 degrees per second * speed
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.RotateAround(new Vector3(0,0,0), new Vector3(0.0f, 1.0f, 0.0f), 10 * Time.deltaTime * rotationSpeed);
+            transform.RotateAround(new Vector3(2.5f,0,2.5f), new Vector3(0.0f, 1.0f, 0.0f), 10 * Time.deltaTime * rotationSpeed);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.RotateAround(new Vector3(0,0,0), new Vector3(0.0f, 1.0f, 0.0f), 10 * Time.deltaTime * -rotationSpeed);
+            transform.RotateAround(new Vector3(2.5f,0,2.5f), new Vector3(0.0f, 1.0f, 0.0f), 10 * Time.deltaTime * -rotationSpeed);
         }
 
         // Increasing/decreasing height of camera

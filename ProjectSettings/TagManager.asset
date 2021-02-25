@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Timer
   - Block
+  - strengthCounter
+  - GameManager
   layers:
   - Default
   - TransparentFX

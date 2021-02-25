@@ -7,8 +7,14 @@ public class DragController : MonoBehaviour
 	private Vector3 mOffset;
 	private float mZCoord;
 	private Vector3 gridSize = new Vector3(1,1,1); // Set x, y and z grid for all shapes
+	private GameObject gameManager = default;
 
-	public void Update()
+    void Start()
+    {
+		gameManager = GameObject.FindGameObjectWithTag("GameManager");
+    }
+
+    public void Update()
 	{
 		// Rounding that position to the nearest grid spot
 		var position = new Vector3(
@@ -49,4 +55,20 @@ public class DragController : MonoBehaviour
 		// Moving shape with the cursor
 		transform.position = GetMouseAsWorldPoint() + mOffset;
 	}
+
+	// Once the Player has finished moving the Object
+    void OnMouseUp()
+    {
+		if(gameObject.transform.Find("TallMesh") == null)
+        {
+			// If the mesh isn't the tall mesh, then the height of the tower is 1
+			gameManager.GetComponent<GameManager>().blockPlaced(gameObject.transform.position.y, 1f, gameObject.GetComponent<ShapeSize>().getSize());
+        }
+        else
+        {
+			// Height of tower is 2
+			gameManager.GetComponent<GameManager>().blockPlaced(gameObject.transform.position.y, 2f, gameObject.GetComponent<ShapeSize>().getSize());
+		}
+		
+    }
 }
