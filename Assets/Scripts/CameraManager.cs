@@ -9,7 +9,7 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         // Camera rotates around center
-        transform.LookAt(new Vector3(8.26f, 3f, 3.37f));
+        //transform.LookAt(new Vector3(8.26f, 3f, 3.37f));
     }
 
     void Update()
@@ -25,13 +25,13 @@ public class CameraManager : MonoBehaviour
         }
 
         // Increasing/decreasing height of camera
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.position += new Vector3(0, 0.01f, 0);
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.position -= new Vector3(0, 0.01f, 0);
-        }
+        //if (Input.GetKey(KeyCode.UpArrow))
+        //{
+        //    transform.position += new Vector3(0, 0.01f, 0);
+        //}
+        //if (Input.GetKey(KeyCode.DownArrow))
+        //{
+        //    transform.position -= new Vector3(0, 0.01f, 0);
+        //}
     }
 }
