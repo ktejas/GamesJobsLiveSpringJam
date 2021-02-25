@@ -9,7 +9,7 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         // Camera rotates around center
-        transform.LookAt(new Vector3(0, 0, 0));
+        transform.LookAt(new Vector3(8.26f, 3f, 3.37f));
     }
 
     void Update()
@@ -17,11 +17,11 @@ public class CameraManager : MonoBehaviour
         // Rotating camera around a point (first parameter), around the Y axis (second parameter) at 20 degrees per second * speed
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.RotateAround(new Vector3(2.5f,0,2.5f), new Vector3(0.0f, 1.0f, 0.0f), 10 * Time.deltaTime * rotationSpeed);
+            transform.RotateAround(new Vector3(8.26f, 3f, 3.37f), new Vector3(0.0f, 2.0f, 0.0f), 10 * Time.deltaTime * rotationSpeed);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.RotateAround(new Vector3(2.5f,0,2.5f), new Vector3(0.0f, 1.0f, 0.0f), 10 * Time.deltaTime * -rotationSpeed);
+            transform.RotateAround(new Vector3(8.26f, 3f, 3.37f), new Vector3(0.0f, 2.0f, 0.0f), 10 * Time.deltaTime * -rotationSpeed);
         }
 
         // Increasing/decreasing height of camera

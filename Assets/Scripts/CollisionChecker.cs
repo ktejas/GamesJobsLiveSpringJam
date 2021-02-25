@@ -10,7 +10,7 @@ public class CollisionChecker : MonoBehaviour
     {
         gameManager = GameObject.FindWithTag("GameManager");
     }
-    private void OnCollisionEnter(Collision otherCollision)
+    void OnCollisionEnter(Collision otherCollision)
     {
         if(otherCollision.gameObject.tag == "Block")
         {

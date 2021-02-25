@@ -28,6 +28,14 @@ public class DragController : MonoBehaviour
 
 		//get with transform.eulerAngles.z
 		transform.eulerAngles = new Vector3(0, 0, 0);
+
+		// Prevention from going below y = 0
+		/*
+		if(gameObject.transform.position.y < -1)
+        {
+			gameObject.transform.position = new Vector3(8, 4, 6); // might need to update this value, as model of the grid + environment comes in
+        }
+		*/
 	}
 
 	void OnMouseDown()
@@ -69,6 +77,5 @@ public class DragController : MonoBehaviour
 			// Height of tower is 2
 			gameManager.GetComponent<GameManager>().blockPlaced(gameObject.transform.position.y, 2f, gameObject.GetComponent<ShapeSize>().getSize());
 		}
-		
-    }
+	}
 }

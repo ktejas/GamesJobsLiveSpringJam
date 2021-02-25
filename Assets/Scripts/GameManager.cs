@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,12 @@ public class GameManager : MonoBehaviour
 	void Update()
 	{
 		displayStrength(); // todo: call less frequently? Doesn't need to be called every frame
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+			// Used for resetting the game, useful for development buils - will need configuring as we make a start/pause menu
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 	}
 
 	IEnumerator ChangeTime()
@@ -84,8 +91,8 @@ public class GameManager : MonoBehaviour
 		else
 		{
 			strengthCounter.GetComponent<Text>().text = 0.ToString();
-			//text = 0
 		}
+		Debug.Log(yHeight);
 	}
 
 	public void increaseCollisionCount (int count)
