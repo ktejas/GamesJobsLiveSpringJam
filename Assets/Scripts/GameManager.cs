@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] public GameObject shapes = default;
 	private int spaceOccupied = 0; // The amount of space occupied on the grid starts at 0
 	private int collisionCount = 0;
+	bool paused = false; // is the game paused
 
 
 	void Start()
@@ -32,11 +33,45 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 			// Used for resetting the game, useful for development buils - will need configuring as we make a start/pause menu
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+			paused = togglePause();
 		}
 	}
 
-	IEnumerator ChangeTime()
+    void OnGUI()
+    {
+        if (paused)
+        {
+			GUILayout.Label("Game is paused!");
+			if (GUILayout.Button("Click to unpause!"))
+            {
+				paused = togglePause();
+            }
+			if (GUILayout.Button("Restart the game"))
+            {
+				paused = togglePause(); //restarting time
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			}
+
+        }
+    }
+
+	bool togglePause()
+    {
+		if (Time.timeScale == 0f)
+        {
+			Time.timeScale = 1f;
+			return (false);
+        }
+        else
+        {
+			Time.timeScale = 0f;
+			return (true);
+        }
+    }
+
+    IEnumerator ChangeTime()
 	{
 		yield return new WaitForSeconds(1.0f);
 		if (timerTime > 0)
