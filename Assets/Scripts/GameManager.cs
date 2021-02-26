@@ -18,10 +18,12 @@ public class GameManager : MonoBehaviour
 	public float yOffsetForDraggedObject = 1;
 	public Plane plane;
     public float distance;
+	public float highestY;
 
 
 	void Start()
 	{
+		highestY = 0;
 		timer = GameObject.FindGameObjectWithTag("Timer");
 		strengthCounter = GameObject.FindGameObjectWithTag("strengthCounter");
 		timer.GetComponent<Text>().text = TimeInFormat(timerTime);
@@ -39,13 +41,7 @@ public class GameManager : MonoBehaviour
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 
-		//keys for changing y level
-		if (Input.GetKeyDown("up")){
-			IncreaseY();
-		}
-		if (Input.GetKeyDown("down")){
-			DecreaseY();
-		}
+		yOffsetForDraggedObject = highestY + 4;
 	}
 
 	IEnumerator ChangeTime()
@@ -111,15 +107,13 @@ public class GameManager : MonoBehaviour
 	{
 		collisionCount += count;
 	}
-
-	public void IncreaseY(){
-		yOffsetForDraggedObject ++;
-		plane = new Plane(Vector3.up, new Vector3(0, yOffsetForDraggedObject, 0));
-	}
-
-	public void DecreaseY(){
-		yOffsetForDraggedObject --;
-		plane = new Plane(Vector3.up, new Vector3(0, yOffsetForDraggedObject, 0));
+	public void UpdateY(float newY){
+		print("y updated");
+		if (newY > highestY){
+			highestY = newY;
+			plane = new Plane(Vector3.up, new Vector3(0, yOffsetForDraggedObject, 0));
+		}
+		
 	}
 
 }

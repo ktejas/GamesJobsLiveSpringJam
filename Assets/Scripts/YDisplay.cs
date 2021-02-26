@@ -16,6 +16,6 @@ public class YDisplay : MonoBehaviour
 
     void Update()
     {
-        text.text = "Y Level:" + gameManager.GetComponent<GameManager>().yOffsetForDraggedObject.ToString();
+        text.text = "Y Level: " + Mathf.RoundToInt(gameManager.GetComponent<GameManager>().yOffsetForDraggedObject).ToString();
     }
 }

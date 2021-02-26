@@ -8,6 +8,7 @@ public class DragController : MonoBehaviour
 	private float mZCoord;
 	private Vector3 gridSize = new Vector3(1,1,1); // Set x, y and z grid for all shapes
 	private GameObject gameManager = default;
+	float direction = 0;
      
     void Start()
     {
@@ -29,9 +30,8 @@ public class DragController : MonoBehaviour
 		this.transform.position = position;
 
 		//get with transform.eulerAngles.z
-		transform.eulerAngles = new Vector3(0, 0, 0);
+		transform.eulerAngles = new Vector3(0, direction, 0);
 
-		
 		
 		// Prevention from going below y = 0
 		/*
@@ -65,10 +65,15 @@ public class DragController : MonoBehaviour
 	void OnMouseDrag()
 	{
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-         if (gameManager.GetComponent<GameManager>().plane.Raycast(ray, out gameManager.GetComponent<GameManager>().distance))
-         {
+        if (gameManager.GetComponent<GameManager>().plane.Raycast(ray, out gameManager.GetComponent<GameManager>().distance))
+        {
              transform.position = ray.GetPoint(gameManager.GetComponent<GameManager>().distance);
-         }
+        }
+
+		//rotates currently held box
+		if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("r")){
+			 Rotate();
+		}
 		// Moving shape with the cursor
 		//transform.position = GetMouseAsWorldPoint() + mOffset;
 	}
@@ -86,6 +91,10 @@ public class DragController : MonoBehaviour
 			// Height of tower is 2
 			gameManager.GetComponent<GameManager>().blockPlaced(gameObject.transform.position.y, 2f, gameObject.GetComponent<ShapeSize>().getSize());
 		}
+	}
+
+	void Rotate(){
+		direction += 90;
 	}
 
 
