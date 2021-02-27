@@ -8,6 +8,7 @@ TagManager:
   - Block
   - strengthCounter
   - GameManager
+  - IgnoreCollision
   layers:
   - Default
   - TransparentFX

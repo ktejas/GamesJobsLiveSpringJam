@@ -15,28 +15,37 @@ public class GameManager : MonoBehaviour
 	[SerializeField] public GameObject shapes = default;
 	private int spaceOccupied = 0; // The amount of space occupied on the grid starts at 0
 	private int collisionCount = 0;
+	public float yOffsetForDraggedObject = 1;
+	public Plane plane;
+    public float distance;
+	public float highestY;
+
 	bool paused = false; // is the game paused
 
 
 	void Start()
 	{
+		highestY = 0;
 		timer = GameObject.FindGameObjectWithTag("Timer");
 		strengthCounter = GameObject.FindGameObjectWithTag("strengthCounter");
 		timer.GetComponent<Text>().text = TimeInFormat(timerTime);
 		StartCoroutine(ChangeTime());
+		plane = new Plane(Vector3.up, new Vector3(0, yOffsetForDraggedObject, 0));
 	}
 
 	void Update()
 	{
 		displayStrength(); // todo: call less frequently? Doesn't need to be called every frame
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
 			// Used for resetting the game, useful for development buils - will need configuring as we make a start/pause menu
 			//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
 			paused = togglePause();
 		}
+
+		yOffsetForDraggedObject = highestY + 4;
 	}
 
     void OnGUI()
@@ -142,6 +151,14 @@ public class GameManager : MonoBehaviour
 	public void increaseCollisionCount (int count)
 	{
 		collisionCount += count;
+	}
+	public void UpdateY(float newY){
+		print("y updated");
+		if (newY > highestY){
+			highestY = newY;
+			plane = new Plane(Vector3.up, new Vector3(0, yOffsetForDraggedObject, 0));
+		}
+		
 	}
 
 }

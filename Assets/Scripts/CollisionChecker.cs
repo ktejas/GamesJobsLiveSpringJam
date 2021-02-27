@@ -20,5 +20,8 @@ public class CollisionChecker : MonoBehaviour
             // Telling the GameManager, so the strength calculation can be changed
             gameManager.GetComponent<GameManager>().increaseCollisionCount(1);
         }
+        if (otherCollision.gameObject.tag != "IgnoreCollision"){
+            gameManager.GetComponent<GameManager>().UpdateY(transform.position.y);
+        }
     }
 }
