@@ -17,10 +17,12 @@ public class GameManager : MonoBehaviour
 	private int collisionCount = 0;
 	public float yOffsetForDraggedObject = 1;
 	public Plane plane;
-    public float distance;
+	public float distance;
 	public float highestY;
 
 	bool paused = false; // is the game paused
+	private GameObject failedMenu = default;
+	private GameObject[] starsMenu = default;
 
 
 	void Start()
@@ -31,56 +33,131 @@ public class GameManager : MonoBehaviour
 		timer.GetComponent<Text>().text = TimeInFormat(timerTime);
 		StartCoroutine(ChangeTime());
 		plane = new Plane(Vector3.up, new Vector3(0, yOffsetForDraggedObject, 0));
+
+		// Splash screen management
+		failedMenu = GameObject.FindGameObjectWithTag("FailedMenu");
+		failedMenu.SetActive(false);
+
+		starsMenu = GameObject.FindGameObjectsWithTag("StarsMenu");
+		for(int i=0; i<starsMenu.Length; i++)
+        {
+			starsMenu[i].SetActive(false);
+		}
+		
+
 	}
 
 	void Update()
-	{
+	{ 
 		displayStrength(); // todo: call less frequently? Doesn't need to be called every frame
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
 			// Used for resetting the game, useful for development buils - will need configuring as we make a start/pause menu
-			//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
 			paused = togglePause();
 		}
 
-		yOffsetForDraggedObject = highestY + 4;
+		yOffsetForDraggedObject = highestY + 3;
+
+		if (ScoreManager())
+		{
+			//todo: implement end of level splash screen - next level or quit
+			
+			showStars();
+		}
+
+		if(currentStrength <= 0)
+        {
+			failedMenu.SetActive(true);
+        }
+	}
+	
+	bool ScoreManager()
+	{
+		if(SceneManager.GetActiveScene().buildIndex == 1)
+		{
+			// Currently handling first level
+			if(yHeight >= 15) // target height is above 15
+			{
+				return true;
+			}
+		}
+		if (SceneManager.GetActiveScene().buildIndex == 2)
+		{
+			// Currently handling second level
+			if (yHeight >= 30) // target height is above 30
+			{
+				return true;
+			}
+		}
+		if (SceneManager.GetActiveScene().buildIndex == 3)
+		{
+			// Currently handling second level
+			if (yHeight >= 30) // target height is above 30
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
-    void OnGUI()
+	void showStars()
     {
-        if (paused)
-        {
+		if (currentStrength < 25 )
+		{
+			// no stars
+			starsMenu[0].SetActive(true);
+		}
+		if (currentStrength >=25 && currentStrength < 50)
+		{
+			// no stars
+			starsMenu[1].SetActive(true);
+		}
+		if (currentStrength >= 50 && currentStrength < 75)
+		{
+			// no stars
+			starsMenu[2].SetActive(true);
+		}
+		if (currentStrength >= 75 && currentStrength < 100)
+		{
+			// no stars
+			starsMenu[3].SetActive(true);
+		}
+	}
+
+	void OnGUI()
+	{
+		if (paused)
+		{
 			GUILayout.Label("Game is paused!");
 			if (GUILayout.Button("Click to unpause!"))
-            {
+			{
 				paused = togglePause();
-            }
+			}
 			if (GUILayout.Button("Restart the game"))
-            {
+			{
 				paused = togglePause(); //restarting time
 				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			}
 
-        }
-    }
+		}
+	}
 
 	bool togglePause()
-    {
+	{
 		if (Time.timeScale == 0f)
-        {
+		{
 			Time.timeScale = 1f;
 			return (false);
-        }
-        else
-        {
+		}
+		else
+		{
 			Time.timeScale = 0f;
 			return (true);
-        }
-    }
+		}
+	}
 
-    IEnumerator ChangeTime()
+	IEnumerator ChangeTime()
 	{
 		yield return new WaitForSeconds(1.0f);
 		if (timerTime > 0)
