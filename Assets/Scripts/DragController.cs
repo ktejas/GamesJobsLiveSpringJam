@@ -6,14 +6,16 @@ public class DragController : MonoBehaviour
 {
 	private Vector3 mOffset;
 	private float mZCoord;
-	private Vector3 gridSize = new Vector3(1,1,1); // Set x, y and z grid for all shapes
+    private float gridSizeUnit;
+	private Vector3 gridSize; 
 	private GameObject gameManager = default;
 	float direction = 0;
      
     void Start()
     {
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
-		
+        gridSizeUnit = 1.1f;
+        gridSize = new Vector3(gridSizeUnit, gridSizeUnit, gridSizeUnit); // Set x, y and z grid for all shapes
     }
 
     public void Update()

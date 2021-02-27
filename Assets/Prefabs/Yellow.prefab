@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3879480832220536561}
   - component: {fileID: 178302124667310420}
   - component: {fileID: 2710467272244127134}
-  - component: {fileID: 1820581635}
   m_Layer: 0
   m_Name: yellow
   m_TagString: Untagged
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1820581635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4511903069117695051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6ef6d4fa0a851543a47d66a03a4c6e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shapeSize: 3
 --- !u!1 &6277362798259545673
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +93,7 @@ GameObject:
   - component: {fileID: 6277362798259545669}
   - component: {fileID: 6277362798259545670}
   - component: {fileID: 6277362798259545671}
+  - component: {fileID: 1522697807}
   m_Layer: 0
   m_Name: Yellow
   m_TagString: Block
@@ -166,3 +153,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1522697807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6277362798259545673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ef6d4fa0a851543a47d66a03a4c6e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapeSize: 3
