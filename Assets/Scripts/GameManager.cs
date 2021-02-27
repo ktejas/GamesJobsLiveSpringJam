@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 	void Start()
 	{
 		highestY = 0;
+		yOffsetForDraggedObject = highestY + 3;
 		timer = GameObject.FindGameObjectWithTag("Timer");
 		strengthCounter = GameObject.FindGameObjectWithTag("strengthCounter");
 		timer.GetComponent<Text>().text = TimeInFormat(timerTime);

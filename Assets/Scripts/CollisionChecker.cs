@@ -21,6 +21,7 @@ public class CollisionChecker : MonoBehaviour
             gameManager.GetComponent<GameManager>().increaseCollisionCount(1);
         }
         if (otherCollision.gameObject.tag != "IgnoreCollision"){
+            print("hitfloor");
             gameManager.GetComponent<GameManager>().UpdateY(transform.position.y);
         }
     }
