@@ -62,11 +62,6 @@ public class GameManager : MonoBehaviour
 		if (ScoreManager())
 		{
 			//todo: implement end of level splash screen - next level or quit
-<<<<<<< Updated upstream
-			
-=======
-			//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
->>>>>>> Stashed changes
 			showStars();
 		}
 
