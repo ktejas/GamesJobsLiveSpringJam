@@ -8,6 +8,9 @@ TagManager:
   - Block
   - strengthCounter
   - GameManager
+  - IgnoreCollision
+  - FailedMenu
+  - StarsMenu
   layers:
   - Default
   - TransparentFX
