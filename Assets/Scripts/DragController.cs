@@ -8,17 +8,14 @@ public class DragController : MonoBehaviour
 	private float mZCoord;
 	private Vector3 gridSize = new Vector3(1,1,1); // Set x, y and z grid for all shapes
 	private GameObject gameManager = default;
-	float direction = 0;
-     
+
     void Start()
     {
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
-		
     }
 
     public void Update()
 	{
-
 		// Rounding that position to the nearest grid spot
 		var position = new Vector3(
 			   Mathf.RoundToInt(this.transform.position.x / this.gridSize.x) * this.gridSize.x,
@@ -30,9 +27,8 @@ public class DragController : MonoBehaviour
 		this.transform.position = position;
 
 		//get with transform.eulerAngles.z
-		transform.eulerAngles = new Vector3(0, direction, 0);
+		transform.eulerAngles = new Vector3(0, 0, 0);
 
-		
 		// Prevention from going below y = 0
 		/*
 		if(gameObject.transform.position.y < -1)
@@ -42,13 +38,13 @@ public class DragController : MonoBehaviour
 		*/
 	}
 
-	//void OnMouseDown()
-	//{
-		//mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+	void OnMouseDown()
+	{
+		mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
 		// Store offset = gameobject world pos - mouse world pos
-		//mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
-	//}
+		mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
+	}
 
 	private Vector3 GetMouseAsWorldPoint()
 	{
@@ -64,18 +60,8 @@ public class DragController : MonoBehaviour
 
 	void OnMouseDrag()
 	{
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (gameManager.GetComponent<GameManager>().plane.Raycast(ray, out gameManager.GetComponent<GameManager>().distance))
-        {
-             transform.position = ray.GetPoint(gameManager.GetComponent<GameManager>().distance);
-        }
-
-		//rotates currently held box
-		if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("r")){
-			 Rotate();
-		}
 		// Moving shape with the cursor
-		//transform.position = GetMouseAsWorldPoint() + mOffset;
+		transform.position = GetMouseAsWorldPoint() + mOffset;
 	}
 
 	// Once the Player has finished moving the Object
@@ -92,10 +78,4 @@ public class DragController : MonoBehaviour
 			gameManager.GetComponent<GameManager>().blockPlaced(gameObject.transform.position.y, 2f, gameObject.GetComponent<ShapeSize>().getSize());
 		}
 	}
-
-	void Rotate(){
-		direction += 90;
-	}
-
-
 }
