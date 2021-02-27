@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 9fc0d4010bbf28b4594072e72b8655ab
+=======
 <<<<<<< HEAD:Assets/Scenes/Main02.unity.meta
 guid: c5812c324ca11ef46b26ff596a71d5c3
 =======
 guid: 9fc0d4010bbf28b4594072e72b8655ab
 >>>>>>> parent of 1a61973 (Temp. Main Menu Implementation):Assets/Scenes/SampleScene.unity.meta
+>>>>>>> parent of 1a61973 (Temp. Main Menu Implementation)
 DefaultImporter:
   externalObjects: {}
   userData: 
