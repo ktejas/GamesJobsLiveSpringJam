@@ -53,8 +53,17 @@ public class GameManager : MonoBehaviour
 				paused = togglePause(); //restarting time
 				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			}
+			if (GUILayout.Button("Return to Menu"))
+			{
+				// To be implemented when a menu screen is created
+			}
+			if (GUILayout.Button("Quit menu"))
+			{
+				paused = togglePause(); //restarting time
+				Application.Quit();
+			}
 
-        }
+		}
     }
 
 	bool togglePause()
