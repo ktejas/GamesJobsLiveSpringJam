@@ -106,7 +106,15 @@ public class DragController : MonoBehaviour
 			// Height of tower is 2
 			gameManager.GetComponent<GameManager>().blockPlaced(gameObject.transform.position.y, 2f, gameObject.GetComponent<ShapeSize>().getSize());
 		}
-		gameManager.GetComponent<GameManager>().UpdateY(transform.position.y);
+		if(height == 1)
+        {
+			gameManager.GetComponent<GameManager>().UpdateY(transform.position.y);
+		}
+		else if (height == 2)
+        {
+			gameManager.GetComponent<GameManager>().UpdateY(transform.position.y + 1);
+		}
+		
 
         state = State.dropped;
 
