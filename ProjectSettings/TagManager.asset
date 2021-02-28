@@ -11,6 +11,9 @@ TagManager:
   - IgnoreCollision
   - FailedMenu
   - StarsMenu
+  - PauseMenu
+  - MMNormal
+  - MMInverted
   layers:
   - Default
   - TransparentFX

@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
 	bool paused = false; // is the game paused
 	private GameObject failedMenu = default;
+	private GameObject pauseMenu = default;
 	private GameObject[] starsMenu = default;
 
 	// Defining the occupied array, used to know what places are already occupied
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
+		Time.timeScale = 1; // Used for when restarting game
 		highestY = 0;
 		yOffsetForDraggedObject = highestY + 3;
 		timer = GameObject.FindGameObjectWithTag("Timer");
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour
 		failedMenu = GameObject.FindGameObjectWithTag("FailedMenu");
 		failedMenu.SetActive(false);
 
+		pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+		pauseMenu.SetActive(false);
 
 		starsMenu = GameObject.FindGameObjectsWithTag("StarsMenu");
 		for(int i=0; i<starsMenu.Length; i++)
@@ -77,12 +81,13 @@ public class GameManager : MonoBehaviour
 
 	void Update()
 	{ 
-		displayStrength(); // todo: call less frequently? Doesn't need to be called every frame
+		displayStrength(); 
 
+		// Pressed escape - pause menu
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			// Used for resetting the game, useful for development buils - will need configuring as we make a start/pause menu
-			paused = togglePause();
+			Time.timeScale = 0;
+			pauseMenu.SetActive(true);
 		}
 
 		yOffsetForDraggedObject = highestY + 6;
