@@ -24,20 +24,21 @@ public class GameManager : MonoBehaviour
 	private GameObject failedMenu = default;
 	private GameObject[] starsMenu = default;
 
-	//									max x, max y, top height (will replace with const values)
-	private bool[,,] occupied = new bool[15,		15,		15];
+	// Defining the occupied array, used to know what places are already occupied
+	public const int GRID_WIDTH = 15;
+	public const int GRID_HEIGHT = 15;
+	public const int TOP_HEIGHT = 15;
 
-	public bool[,,] getOccupiedArray()
-    {
+	private bool[,,] occupied = new bool[GRID_WIDTH, GRID_HEIGHT, TOP_HEIGHT];
+
+	public bool[,,] getOccupiedArray() 
+	{
 		return occupied;
-    }
+	}
 	public void setOccupiedArray(bool[,,] newArray)
-    {
+	{
 		occupied = newArray;
-    }
-
-
-
+	}
 
 	void Start()
 	{
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
 		// Splash screen management
 		failedMenu = GameObject.FindGameObjectWithTag("FailedMenu");
 		failedMenu.SetActive(false);
+
 
 		starsMenu = GameObject.FindGameObjectsWithTag("StarsMenu");
 		for(int i=0; i<starsMenu.Length; i++)
@@ -69,11 +71,9 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-
-		
-
 	}
+
+
 
 	void Update()
 	{ 
@@ -87,13 +87,20 @@ public class GameManager : MonoBehaviour
 
 		yOffsetForDraggedObject = highestY + 6;
 
-		if (ScoreManager())
+		// If they've hit the target height and time is up
+		if (ScoreManager() && timerTime <= 0)
 		{
-			//todo: implement end of level splash screen - next level or quit
 			showStars();
 		}
 
-		if(currentStrength <= 0)
+		// If they havent hit the target height and time is up
+		if (!ScoreManager() && timerTime <= 0)
+		{
+			failedMenu.SetActive(true);
+		}
+
+		// If the current strength falls <= 0, then fail
+		if (currentStrength <= 0)
         {
 			failedMenu.SetActive(true);
         }
@@ -134,6 +141,7 @@ public class GameManager : MonoBehaviour
 		{
 			// no stars
 			starsMenu[0].SetActive(true);
+			Debug.Log("we're at zero");
 		}
 		if (currentStrength >=25 && currentStrength < 50)
 		{
@@ -191,10 +199,6 @@ public class GameManager : MonoBehaviour
 		{
 			timerTime--;
 		}
-		else
-		{
-			Debug.Log("Game Over!");
-		}
 		timer.GetComponent<Text>().text = TimeInFormat(timerTime);
 		StartCoroutine(ChangeTime());
 	}
@@ -240,7 +244,6 @@ public class GameManager : MonoBehaviour
 		{
 			strengthCounter.GetComponent<Text>().text = 0.ToString();
 		}
-		//Debug.Log(yHeight);
 	}
 
 	public void increaseCollisionCount (int count)

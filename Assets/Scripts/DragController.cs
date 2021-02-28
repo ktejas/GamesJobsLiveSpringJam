@@ -45,7 +45,6 @@ public class DragController : MonoBehaviour
 		//rotates currently held box
 		if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("r")){
 			 Rotate();
-			
 		}
 	}
 
@@ -64,26 +63,31 @@ public class DragController : MonoBehaviour
 
 		// Getting width of shape
 		int width = gameObject.GetComponent<ShapeSize>().getWidth();
+		int height = gameObject.GetComponent<ShapeSize>().getHeight();
 
+		// Getting all transforms of child elements (points used to interrogate array)
 		Transform[] children = gameObject.GetComponentsInChildren<Transform>();
 
+		// Returns the lowest Y level the shape should travel down to
 		Y = findY(Y, width, children);
 
+		// Moving shape to the Y level found above
 		transform.position = new Vector3(X, Y + 2, Z);
 
+		// Handling the occupied array updated by iterating over the child point objects
 		for (int i = 0; i < width; i++)
 		{
-			Debug.Log("fired");
+			// Set occupancy to true
 			array[Mathf.RoundToInt(children[i].position.x), Mathf.RoundToInt(children[i].position.y), Mathf.RoundToInt(children[i].position.z)] = true;
 
-			
-			Debug.Log("X: " + Mathf.RoundToInt(children[i].position.x));
-			Debug.Log("Y: " + Mathf.RoundToInt(children[i].position.y));
-			Debug.Log("Z: " + Mathf.RoundToInt(children[i].position.z));
+			// If the container is of height 2, then set the above spaces to also be true
+			if (height == 2)
+            {
+				array[Mathf.RoundToInt(children[i].position.x), Mathf.RoundToInt(children[i].position.y + 1), Mathf.RoundToInt(children[i].position.z)] = true;
+			}
 		}
+		// Returning the modified array to the GameManager
 		GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().setOccupiedArray(array);
-
-
 
 		/* HANDLING STRENGTH VALUE */
 		if (gameObject.transform.Find("TallMesh") == null)
