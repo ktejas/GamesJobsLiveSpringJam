@@ -20,6 +20,9 @@ public class MainMenuNormal : MonoBehaviour
 
 	public void CameraNormalButton()
     {
+        string[] sounds = new string[] { "SelectionA", "SelectionB", "SelectionC", "SelectionD", "SelectionE" };
+        FindObjectOfType<AudioManager>().Play(sounds[Random.Range(0, 5)]);
+
         MMInverted.SetActive(true);
 
         gameObject.GetComponent<CameraManager>().setCameraInverted();
@@ -29,6 +32,7 @@ public class MainMenuNormal : MonoBehaviour
 
 	public void QuitButton()
     {
-		Application.Quit();
+        FindObjectOfType<AudioManager>().Play("Quit");
+        Application.Quit();
     }
 }

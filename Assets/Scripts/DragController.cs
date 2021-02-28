@@ -57,6 +57,9 @@ public class DragController : MonoBehaviour
 	// Once the Player has finished moving the Object
 	void OnMouseUp()
 	{
+		string[] placedsounds = new string[] {"BlockPlacedA", "BlockPlacedB" , "BlockPlacedC" };
+		FindObjectOfType<AudioManager>().Play(placedsounds[Random.Range(0, 3)]);
+
 		/* HANDLING BLOCK PLACEMENT: Y VALUE */
 		/* Used to understand whether the block has been placed before - or are we placing on bottom (needed as
 		   we dont use return statements) */

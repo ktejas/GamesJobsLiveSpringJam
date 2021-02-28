@@ -42,6 +42,8 @@ public class CollisionChecker : MonoBehaviour
         //Debug.Log("Trigger.");
         if (otherCollider.gameObject.tag == "Block" && dragController.state == DragController.State.dropped && blockName == otherCollider.GetComponent<CollisionChecker>().blockName)
         {
+            string[] sounds = new string[] { "CrackA", "CrackB", "CrackC" };
+            FindObjectOfType<AudioManager>().Play(sounds[Random.Range(0, 3)]);
             //if(MaterialPropertyBlock color is same)
             Debug.Log("Similar blocks are colliding.");
             bDestroy = false;

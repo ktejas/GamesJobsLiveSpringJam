@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
 	private GameObject targetHeightText = default;
 	private GameObject[] strengthStars = default;
 
+	// Sounds
+	[SerializeField] AudioClip sound = default;
+
 	// Defining the occupied array, used to know what places are already occupied
 	public const int GRID_WIDTH = 15;
 	public const int GRID_HEIGHT = 15;
@@ -45,6 +48,8 @@ public class GameManager : MonoBehaviour
 
 	void Start()
 	{
+		FindObjectOfType<AudioManager>().Play("ResumeRestart");
+
 		Time.timeScale = 1; // Used for when restarting game
 		highestY = 0;
 		yOffsetForDraggedObject = highestY + 3;
@@ -90,13 +95,14 @@ public class GameManager : MonoBehaviour
 
 
 	void Update()
-	{ 
+	{
 		// Displaying UI Stars
 		displayStrength(); 
 
 		// Pressed escape - pause menu
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
+			//GetComponent<AudioSource>().PlayOneShot(sound, 50f);
 			Time.timeScale = 0;
 			pauseMenu.SetActive(true);
 		}
@@ -156,26 +162,29 @@ public class GameManager : MonoBehaviour
 		if (currentStrength < 25 )
 		{
 			// no stars
+			FindObjectOfType<AudioManager>().Play("LevelFailed");
 			starsMenu[0].SetActive(true);
-			Debug.Log("we're at zero");
 		}
 		if (currentStrength >=25 && currentStrength < 50)
 		{
-			// no stars
+			// 1 star
+			FindObjectOfType<AudioManager>().Play("LevelComplete");
 			starsMenu[1].SetActive(true);
 		}
 		if (currentStrength >= 50 && currentStrength < 75)
 		{
-			// no stars
+			// 2 stars
+			FindObjectOfType<AudioManager>().Play("LevelComplete");
 			starsMenu[2].SetActive(true);
 		}
 		if (currentStrength >= 75 && currentStrength < 100)
 		{
-			// no stars
+			// 3 stars
+			FindObjectOfType<AudioManager>().Play("LevelComplete");
 			starsMenu[3].SetActive(true);
 		}
 	}
-
+	/*
 	void OnGUI()
 	{
 		if (paused)
@@ -206,7 +215,7 @@ public class GameManager : MonoBehaviour
 			Time.timeScale = 0f;
 			return (true);
 		}
-	}
+	}*/
 
 	IEnumerator ChangeTime()
 	{
@@ -293,7 +302,6 @@ public class GameManager : MonoBehaviour
 		collisionCount += count;
 	}
 	public void UpdateY(float newY){
-		//print("y updated");
 		if (newY > highestY){
 			highestY = newY;
 			plane = new Plane(Vector3.up, new Vector3(0, yOffsetForDraggedObject, 0));

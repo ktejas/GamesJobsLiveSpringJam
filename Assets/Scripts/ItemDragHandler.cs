@@ -7,10 +7,15 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler
 {
     RectTransform rectTransform;
 
+    public void OnMouseDown()
+    {
+        string[] sounds = new string[] { "BlockPickupA", "BlockPickupB", "BlockPickupC" };
+        FindObjectOfType<AudioManager>().Play(sounds[Random.Range(0, 3)]);
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
-        Debug.Log("On Drag");
     }
 
     
@@ -20,6 +25,5 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler
         transform.localPosition = Vector3.zero;
         rectTransform = GetComponent<RectTransform>();
         rectTransform.localPosition = Vector3.zero;
-        Debug.Log("End Drag");
     }
 }
