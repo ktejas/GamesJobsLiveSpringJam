@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class ShapeSize : MonoBehaviour
 {
-    [SerializeField] public  int shapeSize = default;
-    public void setSize(int size)
+    [SerializeField] private int width = default;
+    [SerializeField] private int height = default;
+    [SerializeField] private int size = default;
+
+    public void setSize(int widthParam, int heightParam)
     {
-        shapeSize = size;
+        width = widthParam;
+        height = heightParam;
+        size = width * height;
+    }
+    public int getWidth()
+    {
+        return width;
+    }
+    public int getHeight()
+    {
+        return height;
     }
     public int getSize()
     {
-        return shapeSize;
+        return size;
     }
 }

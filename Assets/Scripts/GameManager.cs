@@ -24,6 +24,20 @@ public class GameManager : MonoBehaviour
 	private GameObject failedMenu = default;
 	private GameObject[] starsMenu = default;
 
+	//									max x, max y, top height (will replace with const values)
+	private bool[,,] occupied = new bool[15,		15,		15];
+
+	public bool[,,] getOccupiedArray()
+    {
+		return occupied;
+    }
+	public void setOccupiedArray(bool[,,] newArray)
+    {
+		occupied = newArray;
+    }
+
+
+
 
 	void Start()
 	{
@@ -44,6 +58,19 @@ public class GameManager : MonoBehaviour
         {
 			starsMenu[i].SetActive(false);
 		}
+
+		for(int i=0; i<15; i++)
+        {
+			for(int j=0; j<15; j++)
+            {
+				for(int l=0; l<15; l++)
+                {
+					occupied[i, j, l] = false;
+                }
+            }
+        }
+
+
 		
 
 	}
@@ -58,7 +85,7 @@ public class GameManager : MonoBehaviour
 			paused = togglePause();
 		}
 
-		yOffsetForDraggedObject = highestY + 3;
+		yOffsetForDraggedObject = highestY + 6;
 
 		if (ScoreManager())
 		{
@@ -213,7 +240,7 @@ public class GameManager : MonoBehaviour
 		{
 			strengthCounter.GetComponent<Text>().text = 0.ToString();
 		}
-		Debug.Log(yHeight);
+		//Debug.Log(yHeight);
 	}
 
 	public void increaseCollisionCount (int count)
