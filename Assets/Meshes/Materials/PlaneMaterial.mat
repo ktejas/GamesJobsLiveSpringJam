@@ -74,9 +74,13 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     - _Color: {r: 0.015686266, g: 0.26267546, b: 0.4509804, a: 1}
 =======
     - _Color: {r: 0.097975604, g: 0.6132076, b: 0.078097194, a: 0.25490198}
 >>>>>>> Stashed changes
+=======
+    - _Color: {r: 0.4528302, g: 0.014951949, b: 0.014951949, a: 1}
+>>>>>>> parent of edd90d5 (Fixed grid and prefab alignment)
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
