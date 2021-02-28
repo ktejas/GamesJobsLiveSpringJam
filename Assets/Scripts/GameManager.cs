@@ -251,7 +251,7 @@ public class GameManager : MonoBehaviour
 		collisionCount += count;
 	}
 	public void UpdateY(float newY){
-		print("y updated");
+		//print("y updated");
 		if (newY > highestY){
 			highestY = newY;
 			plane = new Plane(Vector3.up, new Vector3(0, yOffsetForDraggedObject, 0));
