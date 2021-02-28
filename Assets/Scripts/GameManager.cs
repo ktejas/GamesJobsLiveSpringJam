@@ -24,13 +24,15 @@ public class GameManager : MonoBehaviour
 	private GameObject failedMenu = default;
 	private GameObject pauseMenu = default;
 	private GameObject[] starsMenu = default;
+	private GameObject targetHeightText = default;
+	private GameObject[] strengthStars = default;
 
 	// Defining the occupied array, used to know what places are already occupied
 	public const int GRID_WIDTH = 15;
 	public const int GRID_HEIGHT = 15;
-	public const int TOP_HEIGHT = 15;
+	public const int TARGET_HEIGHT = 15;
 
-	private bool[,,] occupied = new bool[GRID_WIDTH, GRID_HEIGHT, TOP_HEIGHT];
+	private bool[,,] occupied = new bool[GRID_WIDTH, GRID_HEIGHT, TARGET_HEIGHT];
 
 	public bool[,,] getOccupiedArray() 
 	{
@@ -59,6 +61,8 @@ public class GameManager : MonoBehaviour
 		pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
 		pauseMenu.SetActive(false);
 
+		strengthStars = GameObject.FindGameObjectsWithTag("StrengthStars");
+
 		starsMenu = GameObject.FindGameObjectsWithTag("StarsMenu");
 		for(int i=0; i<starsMenu.Length; i++)
         {
@@ -81,6 +85,7 @@ public class GameManager : MonoBehaviour
 
 	void Update()
 	{ 
+		// Displaying UI Stars
 		displayStrength(); 
 
 		// Pressed escape - pause menu
@@ -204,6 +209,11 @@ public class GameManager : MonoBehaviour
 		{
 			timerTime--;
 		}
+		if(timerTime < 10)
+        {
+			// Setting colour of timer to red, as time < 10
+			GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>().color = Color.red;
+        }
 		timer.GetComponent<Text>().text = TimeInFormat(timerTime);
 		StartCoroutine(ChangeTime());
 	}
