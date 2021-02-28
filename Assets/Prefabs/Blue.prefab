@@ -94,7 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ef6d4fa0a851543a47d66a03a4c6e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shapeSize: 4
+  width: 0
+  height: 0
+  size: 0
 --- !u!1 &745922743657521825
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +170,6 @@ GameObject:
   - component: {fileID: 8744084402173849654}
   - component: {fileID: 8744084402173849655}
   - component: {fileID: 1439299175}
-  - component: {fileID: 1221391701692235250}
   m_Layer: 0
   m_Name: Blue
   m_TagString: Block
@@ -244,23 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ef6d4fa0a851543a47d66a03a4c6e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shapeSize: 4
---- !u!54 &1221391701692235250
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8744084402173849657}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  width: 4
+  height: 1
+  size: 4
 --- !u!1 &8805247946090836279
 GameObject:
   m_ObjectHideFlags: 0
