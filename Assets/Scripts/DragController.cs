@@ -112,8 +112,8 @@ public class DragController : MonoBehaviour
 		{
 			for (int i = 0; i < width; i++) 
 			{
-				Debug.Log(y);
-				Debug.Log(array[Mathf.RoundToInt(children[i].position.x), y, Mathf.RoundToInt(children[i].position.z)]);
+				//Debug.Log(y);
+				//Debug.Log(array[Mathf.RoundToInt(children[i].position.x), y, Mathf.RoundToInt(children[i].position.z)]);
 
 				if (array[Mathf.RoundToInt(children[i].position.x), y, Mathf.RoundToInt(children[i].position.z)])
 				{
