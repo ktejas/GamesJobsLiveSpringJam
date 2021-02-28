@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 		pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
 		pauseMenu.SetActive(false);
 
-		strengthStars = GameObject.FindGameObjectsWithTag("StrengthStars");
+		//strengthStars = GameObject.FindGameObjectsWithTag("StrengthStars");
 
 		starsMenu = GameObject.FindGameObjectsWithTag("StarsMenu");
 		for(int i=0; i<starsMenu.Length; i++)
