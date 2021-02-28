@@ -28,9 +28,9 @@ public class DragController : MonoBehaviour
 	{
 		// Rounding that position to the nearest grid spot
 		var position = new Vector3(
-			   Mathf.Clamp(Mathf.RoundToInt(this.transform.position.x / this.gridSize.x) * this.gridSize.x, 0, 10),
-			   Mathf.Clamp(Mathf.RoundToInt(this.transform.position.y / this.gridSize.y) * this.gridSize.y, 0, 10),
-			   Mathf.Clamp(Mathf.RoundToInt(this.transform.position.z / this.gridSize.z) * this.gridSize.z, 0, 10)
+			   Mathf.Clamp(Mathf.RoundToInt(this.transform.position.x / this.gridSize.x) * this.gridSize.x, 0, 6),
+			   Mathf.Clamp(Mathf.RoundToInt(this.transform.position.y / this.gridSize.y) * this.gridSize.y, 0, 6),
+			   Mathf.Clamp(Mathf.RoundToInt(this.transform.position.z / this.gridSize.z) * this.gridSize.z, 0, 6)
 		   );
 
 		// Applying the rounding to the nearest grid spot
