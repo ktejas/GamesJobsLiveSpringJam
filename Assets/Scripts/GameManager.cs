@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 		highestY = 0;
 		yOffsetForDraggedObject = highestY + 3;
 		timer = GameObject.FindGameObjectWithTag("Timer");
+		GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>().color = Color.white;
 		strengthCounter = GameObject.FindGameObjectWithTag("strengthCounter");
 		timer.GetComponent<Text>().text = TimeInFormat(timerTime);
 		StartCoroutine(ChangeTime());
@@ -61,7 +62,12 @@ public class GameManager : MonoBehaviour
 		pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
 		pauseMenu.SetActive(false);
 
-		//strengthStars = GameObject.FindGameObjectsWithTag("StrengthStars");
+		strengthStars = GameObject.FindGameObjectsWithTag("StrengthStars");
+
+		for(int i=0; i < strengthStars.Length; i++)
+        {
+			strengthStars[i].SetActive(true);
+        }
 
 		starsMenu = GameObject.FindGameObjectsWithTag("StarsMenu");
 		for(int i=0; i<starsMenu.Length; i++)
@@ -253,11 +259,32 @@ public class GameManager : MonoBehaviour
 	{
 		if (spaceOccupied != 0) // avoiding divide by-zero error
 		{
-			strengthCounter.GetComponent<Text>().text = (100 - ((yHeight * 9) / spaceOccupied) - (collisionCount * 3)).ToString();
-		}
-		else
-		{
-			strengthCounter.GetComponent<Text>().text = 0.ToString();
+			float strength = 100 - ((yHeight * 9) / spaceOccupied) - (collisionCount * 3);
+
+			if (strength >= 75)
+			{
+				strengthStars[0].SetActive(true);
+				strengthStars[1].SetActive(true);
+				strengthStars[2].SetActive(true);
+			}
+			if(strength < 75 && strength >= 50)
+            {
+				strengthStars[0].SetActive(true);
+				strengthStars[1].SetActive(true);
+				strengthStars[2].SetActive(false);
+			}
+			if(strength < 50 & strength >= 25)
+            {
+				strengthStars[0].SetActive(true);
+				strengthStars[1].SetActive(false);
+				strengthStars[2].SetActive(false);
+			}
+			if (strength < 25)
+			{
+				strengthStars[0].SetActive(false);
+				strengthStars[1].SetActive(false);
+				strengthStars[2].SetActive(false);
+			}
 		}
 	}
 

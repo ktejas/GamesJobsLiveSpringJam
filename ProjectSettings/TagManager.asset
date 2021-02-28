@@ -15,6 +15,7 @@ TagManager:
   - MMNormal
   - MMInverted
   - TowerHeightTxt
+  - StrengthStars
   layers:
   - Default
   - TransparentFX
