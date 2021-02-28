@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 6702674405266367900}
   - component: {fileID: 6702674405266367901}
   - component: {fileID: 1022007577}
+  - component: {fileID: 1608402663385720797}
   m_Layer: 0
   m_Name: Purple
   m_TagString: Block
@@ -206,6 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803bf04adf74f574ebe6392355098a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crackedMaterial: {fileID: 2100000, guid: f6779d2cd8a3cc54a9aa48a00229a81a, type: 2}
+  blockName: purple
 --- !u!114 &6702674405266367900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0c08873b238ea4f8adee64d01d0971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
 --- !u!65 &6702674405266367901
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -246,3 +250,16 @@ MonoBehaviour:
   width: 2
   height: 1
   size: 2
+--- !u!65 &1608402663385720797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6702674405266367891}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.84, y: 0.67, z: 1.21}
+  m_Center: {x: 0, y: -1, z: 0}

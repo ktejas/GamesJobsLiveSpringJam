@@ -10,13 +10,19 @@ public class DragController : MonoBehaviour
 	private Vector3 gridSize; 
 	private GameObject gameManager = default;
 	float direction = 0;
+
+    public enum State {normal, dropped};
+    public State state;
 	 
 	void Start()
 	{
 		gameManager = GameObject.FindGameObjectWithTag("GameManager");
 		gridSizeUnit = 2f;
 		gridSize = new Vector3(gridSizeUnit, gridSizeUnit, gridSizeUnit); // Set x, y and z grid for all shapes
-	}
+
+        state = State.normal;
+
+    }
 
 	public void Update()
 	{
@@ -101,7 +107,10 @@ public class DragController : MonoBehaviour
 			gameManager.GetComponent<GameManager>().blockPlaced(gameObject.transform.position.y, 2f, gameObject.GetComponent<ShapeSize>().getSize());
 		}
 		gameManager.GetComponent<GameManager>().UpdateY(transform.position.y);
-	}
+
+        state = State.dropped;
+
+    }
 
 	int findY(int Y, int width, Transform[] children)
     {

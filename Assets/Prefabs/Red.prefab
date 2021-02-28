@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1012808405668430565}
   - component: {fileID: 1012808405668430564}
   - component: {fileID: 85702720}
+  - component: {fileID: 683690628885787663}
   m_Layer: 0
   m_Name: Red
   m_TagString: Block
@@ -81,6 +82,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803bf04adf74f574ebe6392355098a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crackedMaterial: {fileID: 2100000, guid: 2a53d1be3eac9134c8c54b5f837a60f6, type: 2}
+  blockName: red
 --- !u!114 &1012808405668430565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0c08873b238ea4f8adee64d01d0971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
 --- !u!65 &1012808405668430564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121,6 +125,19 @@ MonoBehaviour:
   width: 2
   height: 2
   size: 4
+--- !u!65 &683690628885787663
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012808405668430570}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 3.63, z: 0.91}
+  m_Center: {x: 0, y: 0.59, z: 0}
 --- !u!1 &1372280886608407849
 GameObject:
   m_ObjectHideFlags: 0
